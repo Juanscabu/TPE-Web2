@@ -1,31 +1,20 @@
  {include 'templates/header.tpl'}
- <table class="pedidos_tabla">
-        <tr>
-          <td>Productos</td>
-          <td>Descripcion</td>
-          <td>Precio</td>
-          <td>Editar</td>
-          <td>Borrar</td>
-        </tr>
-        <tr>
-                <td>{$producto->nombre}</td>
-                <td>{$producto->descripcion}</td>
-                <td>{$producto->precio}</td>
-        </tr>
-</table>
+ <slide>
 <form  class="form-group" method= "GET" action="productoEditado" >
         <div class="form-group">
-            <label for="nombreProducto">Nombre:</label>
-            <input type="text" class="form-control" name="nombreProductoEditado" id="nombreProductoEditado">
+            <label for="nombreProductoEditado">Nombre:</label>
+            <input type="text" class="form-control" name="nombreProductoEditado" id="nombreProductoEditado" value="{$producto->nombre}">
         </div>
         <div>
-            <label for="descripcionProducto">Descripcion:</label>
-            <input type="text" class="form-control" name="descripcionProductoEditado" id="descripcionProductoEditado">
-        </div class="form-group">
-          <div>
-           <label for="precioProducto">Precio:</label>
-            <input type="number" class="form-control" name="precioProductoEditado" id="precioProductoEditado">
+            <label for="descripcionProductoEditado">Descripcion:</label>
+            <input type="text" class="form-control" name="descripcionProductoEditado" id="descripcionProductoEditado" value="{$producto->descripcion}">
         </div>
+        <div  class="form-group">
+            <label for="precioProductoEditado">Precio:</label>
+            <input type="number" class="form-control" name="precioProductoEditado" id="precioProductoEditado" value="{$producto->precio}">
+            <input type="text" class="d-none" name="idProductoEditado" id="idProductoEditado" value="{$id}">
+        </div>
+             
         <button type="submit" class="btn btn-primary">Editar Producto</button> 
     </form>
  </slide>

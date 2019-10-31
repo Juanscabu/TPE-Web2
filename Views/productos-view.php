@@ -1,25 +1,12 @@
 <?php
-require('libs/Smarty.class.php');
+require_once('libs/Smarty.class.php');
 
-
-
-
-
-class View {
+class ProductosView {
   private $smarty;
   
   public function __construct() {
     $this->smarty = new Smarty();
     $this->smarty->assign('basehref', BASE_URL);
-}
-
-
-
-  public function mostrarPedidos($pedidos,$productos) {
-    $this->smarty->assign('titulo',"Pedidos");
-    $this->smarty->assign('pedidos',$pedidos);
-    $this->smarty->assign('productos',$productos);
-    $this->smarty->display('templates/pedidos.tpl');
   }
 
   public function mostrarProductos($productos,$loggeado) {
@@ -29,11 +16,12 @@ class View {
     $this->smarty->display('templates/productos.tpl');
   }  
 
-  public function mostrarEditarProducto($producto) {
-    $this->smarty->assign('titulo',"Editar Producto");
+  public function mostrarEditarProducto($producto,$id) {
+    $this->smarty->assign('titulo',"editar productos");
     $this->smarty->assign('producto',$producto);
+    $this->smarty->assign('id',$id);
     $this->smarty->display('templates/editarProducto.tpl');
   }  
 
-
 }
+?>

@@ -1,9 +1,8 @@
  <listnav class="lista">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Pedidos</a></li>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Faq</a></li>
+        <li><a href="mostrarHome">Home</a></li>
+        <li><a href="mostrarPedidos">Pedidos</a></li>
+        <li><a href="mostrarProductos">Productos</a></li>
       </ul>
     </listnav>
     <social class="lista">
@@ -20,7 +19,7 @@
     </social>
     <pie>
       <p>
-        Sitio web realizado por alumnos de la carrera Web I de TUDAI, Facultad de Cs. Exactas.
+        Sitio web realizado por alumnos de TUDAI de la Facultad de Cs. Exactas.
       </p>
     </pie>
   </contenedor>

@@ -22,6 +22,6 @@
         </a>
       </div>
     </slide>
-    <pedidos><a href="pedidos.html"><img src="images/pedidos.jpg" alt="Pedidos" class="pedidos"></a></pedidos>
-    <productos><a href="productos.html"><img src="images/productos.jpg" alt="Productos" class="pedidos"></a></productos>
+    <pedidos><a href="mostrarPedidos"><img src="images/pedidos.jpg" alt="Pedidos" class="pedidos"></a></pedidos>
+    <productos><a href="mostrarProductos"><img src="images/productos.jpg" alt="Productos" class="pedidos"></a></productos>
   {include 'templates/footer.tpl'}

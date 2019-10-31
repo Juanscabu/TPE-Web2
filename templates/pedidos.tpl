@@ -1,5 +1,8 @@
 {include 'templates/header.tpl'}
     <slide>
+      {if $loggeado == true}
+      {include 'templates/pedidosAdm.tpl'}
+      {else}
       <p>
         <form method= "GET" action="enviarPedido" class="form">
           <div class="form-row">
@@ -57,23 +60,19 @@
      <table class="pedidos_tabla">
        <tr>
           <td>Usuario</td>
+          <td><a class="primary"href="mostrarPedidosOrdenados" class="">Productos</a></td>
           <td>Direccion</td>
-          <td>Cantidad</td>
-          <td>Entregado</td>
+          <td>Detalle</td>
         </tr>
     {foreach  from=$pedidos item=$pedido}
         <tr>
-                <td>{$pedido->nombre}</td>
+                <td>{$pedido->cliente}</td>
+                 <td>{$pedido->nombre}</td>
                 <td>{$pedido->direccion}</td>
-                <td>{$pedido->cantidad}</td>
-            {if $pedido->entregado eq 0}
-	            <td>Aun no entregado</td>
-            {else}  
-               <td>Entregado</td>
-            
-                {/if}
+                 <td><a href="detallePedido/{$pedido->id_pedido}" class="btn btn-primary">Detalle</a></td>
         </tr>
     {/foreach}
       </table>
     </slide>
    {include 'templates/footer.tpl'}
+{/if}
