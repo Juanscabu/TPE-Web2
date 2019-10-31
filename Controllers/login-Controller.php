@@ -8,7 +8,6 @@ class LoginController {
     private $model;
 
     public function __construct() {
-       // $this->view = new AdmsView();
         $this->model = new AdmsModel();
     }
 
@@ -22,11 +21,10 @@ class LoginController {
     public function verificaUsuario() {
         $username = $_POST['username'];
         $password = $_POST['password'];
-
         $user = $this->model->getUsuario($username);
         if (!empty($user) && password_verify($password, $user->contraseña)) {
             $this->login($user);
-            header('Location: mostrarProductos');
+            header("Location: " . HOME);
         } else {
           
         }
@@ -41,7 +39,7 @@ class LoginController {
     public function logout() {
         session_start();
         session_destroy();
-        header("Location: mostrarPedidos");
+        header("Location: " . HOME);
 
     } 
 
