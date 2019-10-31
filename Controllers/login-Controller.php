@@ -3,8 +3,6 @@ include_once('Models/adms-Model.php');
 
 class LoginController {
 
-  
-    private $view;
     private $model;
 
     public function __construct() {
@@ -19,9 +17,9 @@ class LoginController {
     }
         
     public function verificaUsuario() {
-        $username = $_POST['username'];
+        $usuario = $_POST['username'];
         $password = $_POST['password'];
-        $user = $this->model->getUsuario($username);
+        $user = $this->model->getUsuario($usuario);
         if (!empty($user) && password_verify($password, $user->contraseña)) {
             $this->login($user);
             header("Location: " . HOME);
@@ -45,6 +43,4 @@ class LoginController {
 
 
 }
-
-
 ?>
