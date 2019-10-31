@@ -30,9 +30,8 @@ class ProductosController{
         if (!empty($nombre) && !empty($descripcion) && !empty($precio)) {
             $this->model->addProducto($nombre,$descripcion,$precio);
             header("Location: " . PRODUCTOS);
-        } else 
-        {  $this->productosView->showError("Faltan datos obligatorios");
-
+        } else {  
+        $this->productosView->mostrarError("Faltan campos obligatorios");
         }
     }
 
@@ -50,9 +49,8 @@ class ProductosController{
         if (!empty($nombre) && !empty($descripcion) && !empty($precio)) {
             $this->model->agregaProductoEditado($nombre,$descripcion,$precio,$id);
             header("Location: " . PRODUCTOS);
-        } else 
-        {
-
+        } else { 
+            $this->productosView->mostrarError("Faltan campos obligatorios");
         }
     }
 

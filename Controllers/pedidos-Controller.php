@@ -45,8 +45,8 @@ class PedidosController {
         if (!empty($cliente) && !empty($direccion) && !empty($producto) && !empty($cantidad)) {
             $this->pedidosModel->addPedido($cliente,$direccion,$producto,$cantidad);
             header("Location: " . PEDIDOS);
-        } else 
-        {  header("location: mostrarProductos");
+        } else {  
+            $this->pedidosView->mostrarError("Faltan campos obligatorios");
         }
 }
 
@@ -80,8 +80,8 @@ class PedidosController {
         if (!empty($cliente) && !empty($direccion) && !empty($cantidad)) {
             $this->pedidosModel->agregaPedidoEditado($cliente,$direccion,$cantidad,$entregado,$id);
             header("Location: " . PEDIDOS);
-        } else 
-        {  
+        } else {   
+            $this->pedidosView->mostrarError("Faltan campos obligatorios");
         }
     }
 

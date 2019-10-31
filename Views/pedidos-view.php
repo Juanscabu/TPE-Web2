@@ -18,6 +18,11 @@ public function mostrarPedidos($pedidos,$productos,$loggeado) {
     $this->smarty->display('templates/pedidos.tpl');
   }
 
+public function mostrarError($msgError) {
+    echo "<h1>ERROR!</h1>";
+    echo "<h2>{$msgError}</h2>";
+}
+
 public function mostrarEditarPedido($pedido,$id) {
     $this->smarty->assign('titulo',"editar pedidos");
     $this->smarty->assign('pedido',$pedido);

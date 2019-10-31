@@ -9,6 +9,11 @@ class ProductosView {
     $this->smarty->assign('basehref', BASE_URL);
   }
 
+  public function mostrarError($msgError) {
+    echo "<h1>ERROR!</h1>";
+    echo "<h2>{$msgError}</h2>";
+}
+
   public function mostrarProductos($productos,$loggeado) {
     $this->smarty->assign('titulo',"Productos");
     $this->smarty->assign('productos',$productos);
