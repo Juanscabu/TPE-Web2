@@ -14,10 +14,10 @@ class ProductosView {
     echo "<h2>{$msgError}</h2>";
 }
 
-  public function mostrarProductos($productos,$loggeado) {
+  public function mostrarProductos($productos,$administrador) {
     $this->smarty->assign('titulo',"Productos");
     $this->smarty->assign('productos',$productos);
-    $this->smarty->assign('loggeado',$loggeado);
+    $this->smarty->assign('loggeado',$administrador);
     $this->smarty->display('templates/productos.tpl');
   }  
 

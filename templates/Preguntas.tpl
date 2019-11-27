@@ -25,3 +25,35 @@ Acomodar los else de las cosas !!!
 
 Borrar no redirecciona bien
 ordenar desde el controller
+
+Tabla de usuarios y administradores?? o una sola con boolean de si es administrador o no;
+Porque va el if antes de la imagen en el Model? si lo saco me anda.
+
+//GET API /comentarios ? id= producto = X
+
+Productos/2/comentarios
+fetch (aps/productos/8/comentarios,function(e))
+
+Route php
+$router->add(get, productos/:id/comentarios, productosApiController,mostrarComentarios)
+
+Productos APIcontroller extends APIController 
+
+function mostrarComentarios ($params) {
+$id = $params[":ID"];
+$comentarios = $this->ModelComentarios->>getComentarios($id);
+$this->View->response($comentarios,Poo)
+}
+
+ComentariosModel
+
+getComentarios ($id)
+$this->db->prepare("SELECT FROM comentarios WHERE id_Producto = ?")
+
+usar input escondido para pasar id del usuario que comenta y producto
+
+
+Como organizo el login, helper?
+Esta bien como estoy preguntando?
+No me carga la imagen en la carpeta asignada
+Como muestro el view de los comentarios?

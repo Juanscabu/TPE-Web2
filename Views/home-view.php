@@ -13,16 +13,16 @@ class HomeView {
     $this->smarty->assign('basehref', BASE_URL);
 }
 
-
-
-  public function mostrarHome() {
+  public function mostrarHome($administrador) {
     $this->smarty->assign('titulo',"Home");
+    $this->smarty->assign('administrador',$administrador);
     $this->smarty->display('templates/home.tpl');
   }
 
-
-
-
+  public function mostrarRegistro() {
+    $this->smarty->assign('titulo',"Registro");
+    $this->smarty->display('templates/registro.tpl');
+  }
 }
 
 ?>

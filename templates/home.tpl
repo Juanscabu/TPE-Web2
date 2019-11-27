@@ -1,5 +1,8 @@
 {include 'templates/header.tpl'}
     <slide>
+    {if $administrador}
+      <a href="verUsuarios" class="btn btn-primary">Usuarios</a>
+    {/if}
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">

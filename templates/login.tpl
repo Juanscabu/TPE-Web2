@@ -7,5 +7,6 @@
         </div class="form-group mx-sm-3">
         <button type="submit" class="btn btn-primary">Login</button>
       <a href="logout" class="btn btn-primary">Logout</a>
+       <a href="registro" class="btn btn-primary">Registrarse</a>
     </form>
       

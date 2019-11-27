@@ -17,20 +17,21 @@
     {/foreach}
 </table>
 
-<form  class="form-group" method= "POST" action="addProducto" >
+<form  class="form-group" method= "POST"  action="addProducto" >
         <div class="form-group">
             <label for="nombreProducto">Nombre:</label>
             <input type="text" class="form-control" name="nombreProducto" id="nombreProducto">
         </div>
-        <div>
+        <div class="form-group">
             <label for="descripcionProducto">Descripcion:</label>
             <input type="text" class="form-control" name="descripcionProducto" id="descripcionProducto">
-        </div class="form-group">
-          <div>
+        </div>
+        <div>
            <label for="precioProducto">Precio:</label>
             <input type="number" class="form-control" name="precioProducto" id="precioProducto">
         </div>
+        
         <button type="submit" class="btn btn-primary">Agregar Producto</button> 
-    </form>
+</form>
  </slide>
 {include 'templates/footer.tpl'}

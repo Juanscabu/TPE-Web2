@@ -23,7 +23,6 @@ class ProductosModel {
         $sentencia->execute(array($nombre,$descripcion,$precio));
     }
 
-
     function  agregaProductoEditado ($nombre,$descripcion,$precio,$id) {
         $sentencia = $this->db->prepare('UPDATE productos SET nombre=?,descripcion=?,precio=? WHERE id_producto = ?' );
         $sentencia->execute(array($nombre,$descripcion,$precio,$id));

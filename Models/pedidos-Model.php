@@ -30,16 +30,29 @@ function addPedido ($cliente,$direccion,$producto,$cantidad) {
     $sentencia->execute(array($cliente,$direccion,$producto,$cantidad));
 }
 
-
-function  agregaPedidoEditado ($cliente,$direccion,$cantidad,$entregado,$id) {
-        $sentencia = $this->db->prepare('UPDATE pedidos SET cliente=?,direccion=?,cantidad=?,entregado=? WHERE id_pedido = ?' );
-        $sentencia->execute(array($cliente,$direccion,$cantidad,$entregado,$id));
+function  agregaPedidoEditado ($cliente,$direccion,$cantidad,$entregado,$imagen = null,$id) {
+    $pathImg = null;
+    if ($imagen)
+    $pathImg = $this->cargaImagen($imagen);
+        $sentencia = $this->db->prepare('UPDATE pedidos SET cliente=?,direccion=?,cantidad=?,entregado=?,imagen=? WHERE id_pedido = ?' );
+        $sentencia->execute(array($cliente,$direccion,$cantidad,$entregado,$pathImg,$id));
     }    
+
+    private function cargaImagen($imagen){
+        $target = 'images/pedidos/' . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));
+        move_uploaded_file($imagen['tmp_name'], $target);
+        return $target;
+    }
 
 public function borrarPedido($id) {
     $sentencia = $this->db->prepare('DELETE FROM pedidos WHERE pedidos.id_pedido = ?' );
     $sentencia->execute(array($id));
     }
+
+    public function borrarImagen($id) {
+        $sentencia = $this->db->prepare('UPDATE pedidos SET imagen= null  WHERE pedidos.id_pedido = ?' );
+        $sentencia->execute(array($id));
+        }
 }
 
 ?>

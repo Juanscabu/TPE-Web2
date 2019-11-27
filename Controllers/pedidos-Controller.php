@@ -2,36 +2,35 @@
 include_once('Models/pedidos-Model.php');
 include_once('Views/productos-View.php');
 include_once('Views/pedidos-View.php');
-include_once('Controllers/productos-Controller.php');
-include_once('Controllers/login-Controller.php');
+include_once('Helpers/sessionHelper.php');
 
 class PedidosController {
     private $pedidosModel;
     private $pedidosView;
-    private $productosController;
-    private $session;
+    private $productosModel;
+    private $permiso;
+    private $administrador;
 
     public function __construct() {
     $this->pedidosModel = new PedidosModel ();
     $this->productosModel = new ProductosModel ();
-    $this->productosController = new ProductosController ();
     $this->pedidosView = new PedidosView ();
-    $this->session = new LoginController();
+    $sessionHelper = new SessionHelper();
+    $this->permiso = $sessionHelper->checkPermiso();
+    $this->administrador = $sessionHelper->checkAdministrador();
     } 
 
 
     public function mostrarPedidosOrdenados() {
         $pedidos = $this->pedidosModel->getPedidosOrdenados();
         $productos = $this->productosModel->getProductos();
-        $loggeado = $this->session->checkLoggedIn();
-        $this->pedidosView->mostrarPedidos($pedidos,$productos,$loggeado);
+        $this->pedidosView->mostrarPedidos($pedidos,$productos,$this->permiso);
     }
 
     public function mostrarPedidos() {
         $pedidos = $this->pedidosModel->getPedidos();
         $productos = $this->productosModel->getProductos();
-        $loggeado = $this->session->checkLoggedIn();
-        $this->pedidosView->mostrarPedidos($pedidos,$productos,$loggeado);
+        $this->pedidosView->mostrarPedidos($pedidos,$productos,$this->permiso);
     }
 
 
@@ -52,9 +51,11 @@ class PedidosController {
 
 
     public function borrarPedido($params = null) {
+        if ($this->permiso) {
         $id = $params[':ID'];
         $this->pedidosModel->borrarPedido($id);
         header("Location: " . PEDIDOS);
+    }
     }
 
     public function detallePedido ($params=null) {
@@ -65,24 +66,43 @@ class PedidosController {
     }  
 
     public function editarPedido ($params = null) {
-        $id = $params[':ID'];
-        $pedido = $this->pedidosModel->getPedido($id);
-        $this->pedidosView->mostrarEditarPedido($pedido,$id);
+        if ($this->permiso) {
+            $id = $params[':ID'];
+            $pedido = $this->pedidosModel->getPedido($id);
+            $this->pedidosView->mostrarEditarPedido($pedido,$id);
+        }
     }
 
 
     public function pedidoEditado () {
-        $cliente = $_GET["nombrePedidoEditado"];
-        $direccion = $_GET["direccionPedidoEditado"];
-        $cantidad = $_GET["cantidadPedidoEditado"];
-        $entregado = $_GET["entregadoPedidoEditado"];
-        $id = $_GET["idPedidoEditado"];
+        if ($this->permiso) {
+        $cliente = $_POST["nombrePedidoEditado"];
+        $direccion = $_POST["direccionPedidoEditado"];
+        $cantidad = $_POST["cantidadPedidoEditado"];
+        $entregado = $_POST["entregadoPedidoEditado"];
+        $id = $_POST["idPedidoEditado"];
         if (!empty($cliente) && !empty($direccion) && !empty($cantidad)) {
-            $this->pedidosModel->agregaPedidoEditado($cliente,$direccion,$cantidad,$entregado,$id);
+            if($_FILES['imagenPedido']['type'] == "image/jpg" || $_FILES['imagenPedido']['type'] == "image/jpeg" 
+        || $_FILES['imagenPedido']['type'] == "image/png" ) { 
+            $this->pedidosModel->agregaPedidoEditado($cliente,$direccion,$cantidad,$entregado,$_FILES['imagenPedido'],$id);
             header("Location: " . PEDIDOS);
+        } else { $this->pedidosModel->agregaPedidoEditado($cliente,$direccion,$cantidad,$entregado,null,$id);
+            header("Location: " . PEDIDOS);}
         } else {   
             $this->pedidosView->mostrarError("Faltan campos obligatorios");
         }
+    }
+    }
+
+    public function borrarImagen($params = null) {
+        if ($this->administrador) {
+        $id = $params[':ID'];
+        $pedido = $this->pedidosModel->getPedido($id);
+        unlink($pedido->imagen);
+        $this->pedidosModel->borrarImagen($id);
+
+        header("Location: " . PEDIDOS);
+    }
     }
 
 }
