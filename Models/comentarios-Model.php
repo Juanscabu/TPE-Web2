@@ -10,22 +10,29 @@ public function __construct() {
 
 
     function getComentarios($id) {
-        $sentencia = $this->db->prepare('SELECT * FROM comentarios WHERE id_producto = ?');
-        $sentencia->execute($id);
+        $sentencia = $this->db->prepare('SELECT * FROM comentarios WHERE id_pedido = ?');
+        $sentencia->execute(array($id));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    
-    function agregarComentario ($cliente,$direccion,$producto,$cantidad) {
-        $sentencia = $this->db->prepare('INSERT INTO comentarios (cliente,direccion,id_producto,cantidad) VALUES(?,?,?,?)');
-        $sentencia->execute(array($cliente,$direccion,$producto,$cantidad));
+    function getComentario($id) {
+        $sentencia = $this->db->prepare('SELECT * FROM comentarios WHERE id_comentario = ?');
+        $sentencia->execute(array($id));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    public function borrarPedido($id) {
-        $sentencia = $this->db->prepare('DELETE FROM comentarios WHERE pedidos.id_pedido = ?' );
-        $sentencia->execute(array($id));
-        }
+    
+    function agregarComentario ($comentario,$puntaje, $id_pedido,$id_usuario) {
+        $sentencia = $this->db->prepare('INSERT INTO comentarios (comentario,puntaje,id_pedido,id_usuario) VALUES(?,?,?,?)');
+        $sentencia->execute(array($comentario,$puntaje,$id_pedido,$id_usuario));
+        return $this->db->lastInsertId();
     }
+
+    public function borrarComentario($id) {
+        $sentencia = $this->db->prepare('DELETE FROM comentarios WHERE id_comentario = ?' );
+        $sentencia->execute(array($id_comentario));
+        }
+    
 
 }
 ?>

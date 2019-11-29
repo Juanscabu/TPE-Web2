@@ -10,6 +10,7 @@ class PedidosController {
     private $productosModel;
     private $permiso;
     private $administrador;
+    private $usuario;
 
     public function __construct() {
     $this->pedidosModel = new PedidosModel ();
@@ -18,6 +19,7 @@ class PedidosController {
     $sessionHelper = new SessionHelper();
     $this->permiso = $sessionHelper->checkPermiso();
     $this->administrador = $sessionHelper->checkAdministrador();
+    $this->usuario = $sessionHelper->getIdUsuario();
     } 
 
 
@@ -62,7 +64,7 @@ class PedidosController {
         $id = $params[':ID'];
         $pedido = $this->pedidosModel->getPedido($id);
         if ($pedido)
-            $this->pedidosView->mostrarDetallePedido($pedido);
+            $this->pedidosView->mostrarDetallePedido($pedido,$this->usuario);
     }  
 
     public function editarPedido ($params = null) {

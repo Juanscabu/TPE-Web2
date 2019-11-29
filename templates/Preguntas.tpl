@@ -57,3 +57,6 @@ Como organizo el login, helper?
 Esta bien como estoy preguntando?
 No me carga la imagen en la carpeta asignada
 Como muestro el view de los comentarios?
+
+ <button class="btn btn-primary" v-on:click="ordenar">Ordenar Puntaje</button>
+              <button class="btn btn-primary" v-on:click="ordenar">Ordenar Usuario</button> 

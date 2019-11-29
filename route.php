@@ -36,7 +36,8 @@
     $r->addRoute("borrarUsuario/:ID", "GET", "UsuariosController", "borrarUsuario");
     $r->addRoute("usuarioEditado", "GET", "UsuariosController", "usuarioEditado");
     $r->addRoute("borrarImagen/:ID", "GET", "PedidosController", "borrarImagen");
-    
+
+
    
     $r->setDefaultRoute("HomeController", "mostrarHome");
     $r->route($_GET["action"], $_SERVER['REQUEST_METHOD']); 

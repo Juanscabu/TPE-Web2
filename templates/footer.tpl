@@ -30,7 +30,7 @@
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
   <script src="js/bootstrap.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/comentarios.js"></script>
 </body>
 
 </html>

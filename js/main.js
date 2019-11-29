@@ -1,30 +1,5 @@
-//VARIABLES
-let captcha;
 
-//EJECUCION DE FUNCIONES
-generateCaptcha();
 
-//EVENT LISTENERS
-let actu = document.querySelector("#actucaptcha");
-actu.addEventListener("click", generateCaptcha)
-let rpedido = document.querySelector("#realizpedido");
-rpedido.addEventListener("click", check)
-let tres = document.querySelector("#tres");
-tres.addEventListener("click", agregar3)
-let borrar = document.querySelector("#borrartabla");
-borrar.addEventListener("click", delete2)
-
-//FUNCIONES CAPTCHA
-function generateCaptcha() {
-    let a = Math.floor((Math.random() * 10));
-    let b = Math.floor((Math.random() * 10));
-    let c = Math.floor((Math.random() * 10));
-    let d = Math.floor((Math.random() * 10));
-
-	captcha=a.toString()+b.toString()+c.toString()+d.toString();
-
-    document.getElementById("captcha").value = captcha;
-}
 
 function check(){
 	let input=document.getElementById("inputText").value;
@@ -55,8 +30,6 @@ let pedidos = [];
 container= document.querySelector("#ultimos-pedidos");
 pedidos[0]=pedido1;
 pedidos[1]=pedido2;
-
-mostrar();
 
 function mostrar() {
 	let html = "<table><tr><td>Nombre</td><td>Apellido</td><td>Direccion</td><td>Producto</td></tr>";

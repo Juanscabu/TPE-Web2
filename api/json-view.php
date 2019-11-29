@@ -1,3 +1,4 @@
+
 <?php
 class JSONView {
 
@@ -15,5 +16,5 @@ private function _requestStatus($code){
     );
     return (isset($status[$code]))? $status[$code] : $status[500];
   }
-
+}
 ?>

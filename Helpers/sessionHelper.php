@@ -51,4 +51,10 @@ class SessionHelper {
         if (session_status() != PHP_SESSION_ACTIVE)
         return $_SESSION['USERNAME'];
     }
+
+    public function getIdUsuario() {
+        if (isset($_SESSION['ID_USER'])) {
+        return $_SESSION['ID_USER'];
+        }
+    }
 }

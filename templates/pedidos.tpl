@@ -3,8 +3,8 @@
       {if $loggeado == true}
       {include 'templates/pedidosAdm.tpl'}
       {else}
-      <p>
         <form method= "GET" action="enviarPedido" class="form">
+        <div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputName4">Nombre</label>
@@ -35,28 +35,11 @@
             <div class="form-group col-md-4">
               <label for="inputCantidad">Cantidad</label>
               <input type="text" class="form-control" name="inputCantidad" id="inputCantidad" max="24" placeholder="1">
+               <button type="submit" class="btn btn-primary" id="realizpedido">Realizar pedido</button>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="captcha">Captcha:</label>
-                <input type="text" id="inputText" class="form-control">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="generatedcaptcha" class="text-white">a</label>
-                <input type="text" class="form-control" id="captcha" disabled />
-              </div>
-              <div class="form-group col-md-4">
-                <label for="button-captcha" class="text-white">a</label></br>
-                <button type="button" class="btn btn-primary" id="actucaptcha">Actualizar</button>
-              </div>
-              </label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary" id="realizpedido">Realizar pedido</button>
+             </div>
         </form>
-      </p>
+        
      <table class="pedidos_tabla">
        <tr>
           <td>Usuario</td>

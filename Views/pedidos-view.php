@@ -30,9 +30,10 @@ public function mostrarEditarPedido($pedido,$id) {
     $this->smarty->display('templates/editarPedido.tpl');
 }  
 
-public function mostrarDetallePedido($pedido) {
-    $this->smarty->assign('titulo',"editar pedido");
+public function mostrarDetallePedido($pedido,$usuario) {
+    $this->smarty->assign('titulo',"Detalle pedido");
     $this->smarty->assign('pedido',$pedido);
+    $this->smarty->assign('usuario',$usuario);
     $this->smarty->display('templates/detallePedido.tpl');
 }  
 }
