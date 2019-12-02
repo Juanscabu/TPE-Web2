@@ -22,15 +22,15 @@ public function __construct() {
     }
 
     
-    function agregarComentario ($comentario,$puntaje, $id_pedido,$id_usuario) {
-        $sentencia = $this->db->prepare('INSERT INTO comentarios (comentario,puntaje,id_pedido,id_usuario) VALUES(?,?,?,?)');
-        $sentencia->execute(array($comentario,$puntaje,$id_pedido,$id_usuario));
+    function agregarComentario ($comentario,$puntaje,$id_usuario, $id_pedido) {
+        $sentencia = $this->db->prepare('INSERT INTO comentarios (comentario,puntaje,id_usuario,id_pedido) VALUES(?,?,?,?)');
+        $sentencia->execute(array($comentario,$puntaje,$id_usuario,$id_pedido));
         return $this->db->lastInsertId();
     }
 
     public function borrarComentario($id) {
         $sentencia = $this->db->prepare('DELETE FROM comentarios WHERE id_comentario = ?' );
-        $sentencia->execute(array($id_comentario));
+        $sentencia->execute(array($id));
         }
     
 

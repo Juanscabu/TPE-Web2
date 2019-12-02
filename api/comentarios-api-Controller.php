@@ -34,23 +34,23 @@ class ComentariosApiController {
 
 
     public function borrarComentario($params = null) {
-        if ($this->administrador) {
+        //if ($this->administrador) {
         $id = $params[':ID'];
         $comentario = $this->comentariosModel->getComentario($id);
         if ($comentario) {
-            $this->comentariosModel->delete($id);
+            $this->comentariosModel->borrarComentario($id);
             $this->comentariosView->response("El comentario fue borrado con exito.", 200);
         } else {
             $this->comentariosView->response("El comentario no existe", 404);
         }
-    }
+    //}
     }
 
     public function agregaComentario($params = null) {
-        if ($this->permiso) {
+        // if ($this->permiso) {
         $comentarioAgregado = $this->getData();
         $id = $this->comentariosModel->agregarComentario($comentarioAgregado->comentario,$comentarioAgregado->puntaje,$comentarioAgregado->id_usuario,$comentarioAgregado->id_pedido);
-        $nuevoComentario = $this->comentariosModel->get($id);
+        $nuevoComentario = $this->comentariosModel->getComentario($id);
         if ($nuevoComentario) {
             $this->comentariosView->response($nuevoComentario, 200);
         }
@@ -58,7 +58,7 @@ class ComentariosApiController {
             $this->comentariosView->response("el comentario no fue creado", 500);
         }
 
-    }
+    //}
 }
 }
 ?>

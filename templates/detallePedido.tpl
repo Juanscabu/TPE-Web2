@@ -20,7 +20,7 @@
                {/if}
 
     <input type="text" id="id_pedido" class="d-none" value="{$pedido->id_pedido}" >     
-    <input type="text" id="id_usuario"  value="{$usuario}" >       
+    <input type="text" id="id_usuario" class="d-none"  value="{$usuario}" >       
         </tr>
 </table>
 {if ($pedido->imagen != null)}
@@ -39,7 +39,7 @@
          <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Comentarios</h4>
-                <button id="btn-refrescar" type="button" class="btn btn-primary btn-sm"> Refrescar</button>
+                <button v-on:click="getComentarios()" type="button" class="btn btn-primary btn-sm"> Refrescar</button>
             </div>
          
             <div v-if="loading" class="card-body">
@@ -50,7 +50,7 @@
                 <div v-for="comentario in comentarios"  class="list-group-item list-group-item-action"> -
                     {{ comentario.comentario }} 
                     {{ comentario.puntaje}}
-                     <button v-on:click="borrarComentario(comentario.id_comentarios)" class="btn btn-primary btn-sm">borrar</button>
+                     <button v-on:click="borrarComentario(comentario.id_comentario)" class="btn btn-primary btn-sm">borrar</button>
                 </div>
             </ul>
 </section>

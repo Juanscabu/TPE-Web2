@@ -1,7 +1,6 @@
 "use strict"
 
 document.addEventListener('DOMContentLoaded', getComentarios);
-document.querySelector("#btn-refrescar").addEventListener('click', getComentarios);
 document.querySelector("#formularioComentario").addEventListener('submit', agregarComentario);
 
 let app = new Vue({
@@ -10,11 +9,13 @@ let app = new Vue({
         title: "Lista de comentarios",
         loading: false,
         comentarios: [],
-        methods: {
+      },  methods: {
           borrarComentario: function (id) {
               borrarComentario(id);
+          },
+          getComentarios() {
+            getComentarios();
           }
-    }
     }
     
 });
@@ -39,13 +40,16 @@ function agregarComentario(e) {
      comentario: document.querySelector("#comentario_pedido").value,
      puntaje: document.querySelector("#puntajeComentario").value,
    }
-   fetch("api/comentarios", {
+   fetch("api/comentarios/" + id_pedido, {
   "method": "POST",
   "headers": {"Content-Type": "application/json"},       
   "body": JSON.stringify(comentarioAgregado)
    })
-    .then(console.log(comentarioAgregado))
-}
+    setTimeout(function() { 
+    getComentarios()
+    }, 500)
+  }
+
 
 function borrarComentario(id) {
 
@@ -53,6 +57,9 @@ function borrarComentario(id) {
     method: "DELETE",
     "headers": {'Content-Type': 'application/json'}     
   })
-  
-}
+  setTimeout(function() { 
+    getComentarios()
+    }, 500)
+  }
+
 
